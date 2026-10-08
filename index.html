@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Farmacia | Catálogo de Medicamentos</title>
+
+    <link
+        rel="stylesheet"
+        href="./src/css/styles.css"
+    >
+</head>
+
+<body>
+
+    <!-- =========================
+         ENCABEZADO
+    ========================== -->
+    <header class="header">
+
+        <div class="container">
+
+            <h1>Farmacia Salud+</h1>
+
+            <nav class="nav">
+
+                <a href="#inicio">
+                    Inicio
+                </a>
+
+                <a href="#productos">
+                    Productos
+                </a>
+
+                <a href="#promociones">
+                    Promociones
+                </a>
+
+                <a href="#carrito">
+                    🛒 Carrito
+                    (<span id="cantidadCarrito">0</span>)
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         INICIO
+    ========================== -->
+    <main>
+
+        <section
+            id="inicio"
+            class="inicio"
+        >
+
+            <div class="container">
+
+                <h2>
+                    Encuentra los medicamentos que necesitas
+                </h2>
+
+                <p>
+                    Consulta nuestro catálogo de medicamentos,
+                    precios, categorías y laboratorios.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CATÁLOGO
+        ========================== -->
+        <section
+            id="productos"
+            class="container"
+        >
+
+            <h2>
+                Catálogo de medicamentos
+            </h2>
+
+
+            <!-- =========================
+                 BÚSQUEDA Y FILTROS
+            ========================== -->
+            <div class="filtros">
+
+
+                <!-- Búsqueda -->
+                <div class="filtro-grupo">
+
+                    <label for="buscarProducto">
+                        Buscar medicamento
+                    </label>
+
+                    <input
+                        type="text"
+                        id="buscarProducto"
+                        placeholder="Nombre, código o principio activo..."
+                    >
+
+                </div>
+
+
+                <!-- Categorías -->
+                <div class="filtro-grupo">
+
+                    <label for="filtroCategoria">
+                        Categoría
+                    </label>
+
+                    <select id="filtroCategoria">
+
+                        <option value="">
+                            Todas las categorías
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Laboratorios -->
+                <div class="filtro-grupo">
+
+                    <label for="filtroLaboratorio">
+                        Laboratorio
+                    </label>
+
+                    <select id="filtroLaboratorio">
+
+                        <option value="">
+                            Todos los laboratorios
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Limpiar -->
+                <div class="filtro-grupo">
+
+                    <button
+                        type="button"
+                        id="btnLimpiarFiltros"
+                    >
+                        Limpiar filtros
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 ESTADO DE CARGA
+            ========================== -->
+            <div id="estadoProductos">
+
+                Cargando medicamentos...
+
+            </div>
+
+
+            <!-- =========================
+                 PRODUCTOS
+            ========================== -->
+            <div id="listaProductos">
+
+                <!--
+                    Los medicamentos se cargarán
+                    dinámicamente desde la API.
+                -->
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PROMOCIONES
+             La implementaremos después
+        ========================== -->
+        <section
+            id="promociones"
+            class="container"
+        >
+
+            <h2>
+                Promociones
+            </h2>
+
+            <div id="listaPromociones">
+
+                <p>
+                    Cargando promociones...
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CARRITO
+             Lo implementaremos después
+        ========================== -->
+        <section
+            id="carrito"
+            class="container"
+        >
+
+            <h2>
+                Mi carrito
+            </h2>
+
+            <div id="listaCarrito">
+
+                <p>
+                    Tu carrito está vacío.
+                </p>
+
+            </div>
+
+            <div class="cart-total"><strong>Total: S/ <span id="totalCarrito">0.00</span></strong><div class="checkout-actions"><button id="btnComprar" type="button">Comprar ahora</button><button id="btnVaciarCarrito" class="secondary" type="button">Vaciar carrito</button></div></div>
+        </section>
+
+    </main>
+
+
+    <div id="aviso" class="toast" role="status" hidden></div>
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitulo" hidden><div class="modal-content"><button id="btnCerrarModal" class="close-modal" type="button" aria-label="Cerrar">×</button><div id="detalleContenido"></div></div></div>
+    <!-- =========================
+         PIE DE PÁGINA
+    ========================== -->
+    <footer>
+
+        <div class="container">
+
+            <p>
+                Farmacia Salud+ - Catálogo de medicamentos
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT PRINCIPAL
+    ========================== -->
+    <script
+        type="module"
+        src="./src/app.js"
+    ></script>
+
+</body>
+
+</html>
