@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Farmacia | Panel de Administración</title>
+    <meta name="theme-color" content="#14532d">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icons/icon-192.png">
+
+    <link
+        rel="stylesheet"
+        href="./src/css/styles.css"
+    >
+    <!-- Reutilizamos tu mismo archivo de estilos -->
+    <link rel="stylesheet" href="./src/css/styles.css" />
+    <style>
+      /* Clases auxiliares para la navegación en una sola página */
+      .seccion-oculta {
+        display: none;
+      }
+      .seccion-activa {
+        display: block;
+      }
+      /* Estilos básicos para tablas de administración */
+      .tabla-admin {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      .tabla-admin th,
+      .tabla-admin td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+      }
+      .tabla-admin th {
+        background-color: #f4f4f4;
+      }
+      .btn-accion {
+        margin-right: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+      .btn-nuevo {
+        margin-top: 10px;
+        padding: 10px 15px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* Hacer el modal más ancho para que parezca un panel */
+      .modal-content {
+        max-width: 900px !important;
+        width: 90%;
+      }
+
+      /* Sistema de grilla (Grid) de 4 columnas */
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        margin-top: 15px;
+      }
+
+      /* Clases para que un campo ocupe varias columnas */
+      .form-span-2 {
+        grid-column: span 2;
+      }
+      .form-span-4 {
+        grid-column: span 4;
+      } /* Ancho completo */
+
+      /* Estilos de los inputs idénticos a tu imagen */
+      .form-group {
+        display: flex;
+        flex-direction: column;
+      }
+      .form-group label {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #333;
+      }
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-family: inherit;
+        font-size: 14px;
+      }
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #28a745;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <h1>Panel de Administración</h1>
+        <nav class="nav">
+          <!-- Botones para cambiar de sección dinámicamente -->
+          <a href="#" onclick="mostrarSeccion('productos')"> Productos</a>
+          <a href="#" onclick="mostrarSeccion('categorias')"> Categorías</a>
+          <a href="#" onclick="mostrarSeccion('laboratorios')"> Laboratorios</a>
+          <a href="#" onclick="mostrarSeccion('promociones')"> Promociones</a>
+          <a href="#" onclick="mostrarSeccion('empleados')"> Empleados</a>
+          <a href="index.html" style="color: #ff4444"> Salir al Catálogo</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container" style="margin-top: 30px">
+      <!-- SECCIÓN: PRODUCTOS -->
+      <section id="sec-productos" class="seccion-activa">
+        <h2>Administrar Productos</h2>
+        <button class="btn-nuevo" id="btnNuevoProducto">
+          + Nuevo Producto
+        </button>
+        <table class="tabla-admin">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Categoría</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-productos">
+            <tr>
+              <td colspan="6">Cargando productos...</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- SECCIÓN: CATEGORÍAS -->
+      <section id="sec-categorias" class="seccion-oculta">
+        <h2>Administrar Categorías</h2>
+        <button class="btn-nuevo" id="btnNuevaCategoria">
+          + Nueva Categoría
+        </button>
+        <table class="tabla-admin">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-categorias">
+            <!-- Filas dinámicas -->
+          </tbody>
+        </table>
+      </section>
+
+      <!-- SECCIÓN: LABORATORIOS -->
+      <section id="sec-laboratorios" class="seccion-oculta">
+        <h2>Administrar Laboratorios</h2>
+        <button class="btn-nuevo" id="btnNuevoLaboratorio">
+          + Nuevo Laboratorio
+        </button>
+        <table class="tabla-admin">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-laboratorios">
+            <!-- Filas dinámicas -->
+          </tbody>
+        </table>
+      </section>
+
+      <!-- SECCIÓN: PROMOCIONES -->
+      <section id="sec-promociones" class="seccion-oculta">
+        <h2>Administrar Promociones</h2>
+        <button class="btn-nuevo" id="btnNuevaPromocion">
+          + Nueva Promoción
+        </button>
+        <table class="tabla-admin">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Descuento (%)</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-promociones">
+            <!-- Filas dinámicas -->
+          </tbody>
+        </table>
+      </section>
+
+      <section id="sec-empleados" class="seccion-oculta">
+        <h2>Administrar Empleados (Firebase)</h2>
+        <button class="btn-nuevo" id="btnNuevoEmpleado">
+          + Nuevo Empleado
+        </button>
+        <table class="tabla-admin">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Cargo</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-empleados"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <!-- =========================
+         MODAL REUTILIZABLE PARA FORMULARIOS
+    ========================== -->
+    <div id="modalAdmin" class="modal" role="dialog" aria-modal="true" hidden>
+      <div class="modal-content">
+        <button id="btnCerrarModalAdmin" class="close-modal" type="button">
+          ×
+        </button>
+        <h3 id="modalTitulo">Formulario</h3>
+        <div id="modalFormularioContenido">
+          <!-- Aquí inyectaremos los inputs dinámicamente con JS dependiendo de si es producto, categoría, etc. -->
+        </div>
+        <button
+          id="btnGuardar"
+          class="btn-nuevo"
+          style="width: 100%; margin-top: 15px"
+        >
+          Guardar
+        </button>
+      </div>
+    </div>
+
+    <div id="aviso" class="toast" role="status" hidden></div>
+
+    <!-- =========================
+         LOGICA DE NAVEGACIÓN SPA
+    ========================== -->
+    <script>
+      function mostrarSeccion(seccionId) {
+        // 1. Ocultar TODAS las secciones primero
+        document.getElementById("sec-productos").className = "seccion-oculta";
+        document.getElementById("sec-categorias").className = "seccion-oculta";
+        document.getElementById("sec-laboratorios").className = "seccion-oculta";
+        document.getElementById("sec-promociones").className = "seccion-oculta";
+        document.getElementById("sec-empleados").className = "seccion-oculta";
+
+        // 2. Mostrar SOLAMENTE la sección que el usuario clickeó
+        document.getElementById(`sec-${seccionId}`).className = "seccion-activa";
+      }
+    </script>
+
+    <!-- =========================
+         JAVASCRIPT DE ADMINISTRACIÓN
+    ========================== -->
+    <script type="module" src="./src/admin.js"></script>
+  </body>
+</html>
