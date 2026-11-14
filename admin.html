@@ -8,10 +8,6 @@
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" href="/icons/icon-192.png">
 
-    <link
-        rel="stylesheet"
-        href="./src/css/styles.css"
-    >
     <!-- Reutilizamos tu mismo archivo de estilos -->
     <link rel="stylesheet" href="./src/css/styles.css" />
     <style>
@@ -98,6 +94,70 @@
         outline: none;
         border-color: #28a745;
       }
+
+      /* ==========================================
+         DISEÑO RESPONSIVE PARA CELULARES (MÓVIL)
+      ========================================== */
+      .tabla-responsive {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      @media (max-width: 768px) {
+        /* 1. Encabezado y menú apilados y centrados */
+        .header .container {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 12px;
+        }
+
+        .header h1 {
+          font-size: 1.35rem;
+        }
+
+        .nav {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 8px;
+          width: 100%;
+        }
+
+        .nav a {
+          padding: 6px 10px;
+          background-color: rgba(255, 255, 255, 0.12);
+          border-radius: 6px;
+          font-size: 0.9rem;
+        }
+
+        /* 2. Tablas legibles con desplazamiento horizontal */
+        .tabla-admin th,
+        .tabla-admin td {
+          padding: 8px;
+          font-size: 0.85rem;
+          white-space: nowrap;
+        }
+
+        /* 3. Formulario del modal a 1 sola columna en móvil */
+        .form-grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+
+        .form-span-2,
+        .form-span-4 {
+          grid-column: span 1;
+        }
+
+        .modal-content {
+          width: 95%;
+          padding: 15px;
+          max-height: 90vh;
+          overflow-y: auto;
+        }
+      }
     </style>
   </head>
   <body>
@@ -123,23 +183,25 @@
         <button class="btn-nuevo" id="btnNuevoProducto">
           + Nuevo Producto
         </button>
-        <table class="tabla-admin">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Categoría</th>
-              <th>Precio</th>
-              <th>Stock</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="tbody-productos">
-            <tr>
-              <td colspan="6">Cargando productos...</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="tabla-responsive">
+          <table class="tabla-admin">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-productos">
+              <tr>
+                <td colspan="6">Cargando productos...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <!-- SECCIÓN: CATEGORÍAS -->
@@ -148,19 +210,21 @@
         <button class="btn-nuevo" id="btnNuevaCategoria">
           + Nueva Categoría
         </button>
-        <table class="tabla-admin">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Descripción</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="tbody-categorias">
-            <!-- Filas dinámicas -->
-          </tbody>
-        </table>
+        <div class="tabla-responsive">
+          <table class="tabla-admin">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-categorias">
+              <!-- Filas dinámicas -->
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <!-- SECCIÓN: LABORATORIOS -->
@@ -169,18 +233,20 @@
         <button class="btn-nuevo" id="btnNuevoLaboratorio">
           + Nuevo Laboratorio
         </button>
-        <table class="tabla-admin">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="tbody-laboratorios">
-            <!-- Filas dinámicas -->
-          </tbody>
-        </table>
+        <div class="tabla-responsive">
+          <table class="tabla-admin">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-laboratorios">
+              <!-- Filas dinámicas -->
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <!-- SECCIÓN: PROMOCIONES -->
@@ -189,20 +255,22 @@
         <button class="btn-nuevo" id="btnNuevaPromocion">
           + Nueva Promoción
         </button>
-        <table class="tabla-admin">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Descuento (%)</th>
-              <th>Estado</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="tbody-promociones">
-            <!-- Filas dinámicas -->
-          </tbody>
-        </table>
+        <div class="tabla-responsive">
+          <table class="tabla-admin">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descuento (%)</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-promociones">
+              <!-- Filas dinámicas -->
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section id="sec-empleados" class="seccion-oculta">
@@ -210,17 +278,19 @@
         <button class="btn-nuevo" id="btnNuevoEmpleado">
           + Nuevo Empleado
         </button>
-        <table class="tabla-admin">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Cargo</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="tbody-empleados"></tbody>
-        </table>
+        <div class="tabla-responsive">
+          <table class="tabla-admin">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Cargo</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-empleados"></tbody>
+          </table>
+        </div>
       </section>
     </main>
 
