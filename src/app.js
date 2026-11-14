@@ -75,3 +75,16 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') $('modal').h
 $('btnLimpiarFiltros').onclick = () => { ['buscarProducto','filtroCategoria','filtroLaboratorio'].forEach(id => $(id).value = ''); renderProductos(); };
 renderCarrito();
 Promise.allSettled([cargarProductos(),llenarFiltro('filtroCategoria',listarCategorias,'categorías'),llenarFiltro('filtroLaboratorio',listarLaboratorios,'laboratorios'),cargarPromociones()]);
+// ==========================================
+// REGISTRO DEL SERVICE WORKER (INSTALADOR PWA)
+// ==========================================
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', async () => {
+    try {
+      await navigator.serviceWorker.register('/service-worker.js');
+      console.log('Service Worker registrado con éxito.');
+    } catch (error) {
+      console.error('Error al registrar el Service Worker:', error);
+    }
+  });
+}
