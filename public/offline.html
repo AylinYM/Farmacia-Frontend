@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmacia Salud+ | Sin conexión</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: #f4f6fb;
+      color: #1f2937;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      padding: 20px;
+    }
+    .offline-card {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      max-width: 400px;
+    }
+    h1 {
+      color: #14532d;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    p {
+      color: #4b5563;
+      line-height: 1.5;
+      margin-bottom: 25px;
+    }
+    button {
+      background-color: #14532d;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #166534;
+    }
+  </style>
+</head>
+<body>
+  <div class="offline-card">
+    <h1>Sin conexión a Internet</h1>
+    <p>No tienes conexión en este momento. Verifica tu red para consultar el catálogo actualizado de Farmacia Salud+.</p>
+    <button onclick="window.location.reload()">Reintentar conexión</button>
+  </div>
+</body>
+</html>

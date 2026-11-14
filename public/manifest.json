@@ -1,0 +1,26 @@
+{
+  "id": "/",
+  "name": "Farmacia Salud+ | Catálogo y Gestión",
+  "short_name": "Farmacia Salud+",
+  "description": "Catálogo de medicamentos y panel de administración de Farmacia Salud+.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f4f6fb",
+  "theme_color": "#14532d",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
